@@ -1,0 +1,88 @@
+.upper-jobportal-container {
+  background: transparent
+    linear-gradient(248deg, var(--unnamed-color-303f60) 0%, #1a253c 100%) 0% 0%
+    no-repeat padding-box;
+  opacity: 1;
+  height: 210px;
+}
+
+.post-job-button {
+  position: absolute;
+  left: 1110px;
+  top: 29px;
+  color: var(--unnamed-color-ffffff);
+  text-align: center;
+  font-size: 18px;
+}
+
+.account {
+  color: var(--unnamed-color-303f60);
+  text-align: center;
+  background: #d9efff 0% 0% no-repeat padding-box;
+  border-radius: 36px;
+  opacity: 1;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 15px;
+  left: 1225px;
+}
+
+.home {
+  position: absolute;
+  top: 83px;
+  left: 200px;
+  color: #ffffff;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #ffffff;
+  position: absolute;
+  left: 1275px;
+  top: 34px;
+}
+
+.box {
+  width: 112px;
+  height: auto;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  color: #fff;
+  padding: 20px;
+  position: relative;
+  margin: 40px;
+  border-radius: 5px;
+  left: 1148px;
+  top: -40px;
+}
+
+.box.arrow-top {
+  margin-top: 40px;
+  color: var(--unnamed-color-303f60);
+  padding: 10px;
+}
+
+.box.arrow-top:after {
+  content: " ";
+  position: absolute;
+  right: 11px;
+  top: -7px;
+  border-top: none;
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+  border-bottom: 7px solid #ffffff;
+}
+
+.home-bottom {
+  position: absolute;
+  left: 173px;
+  top: 119px;
+  font-size: 22px;
+  color: #ffffff;
+}
