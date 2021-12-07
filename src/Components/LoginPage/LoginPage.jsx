@@ -3,6 +3,7 @@ import axios from "axios";
 import BASE_URL from "../../Utils/api";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginPage.css";
+let userToken;
 
 const LoginPage = (props) => {
   const [email, setEmail] = useState("");
@@ -17,7 +18,8 @@ const LoginPage = (props) => {
         email,
         password,
       });
-      console.log(res.status);
+      userToken=res.data.data.token;
+      console.log(res.data.data.token);
       if (res.status === 200) {
         console.log("email and pass is correct");
         navigate("/jobportal", { replace: true });
@@ -136,4 +138,5 @@ const LoginPage = (props) => {
   );
 };
 
-export default LoginPage;
+export {LoginPage,userToken};
+

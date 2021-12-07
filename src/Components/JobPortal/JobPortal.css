@@ -86,3 +86,46 @@
   font-size: 22px;
   color: #ffffff;
 }
+
+.jobs-cards-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 185px;
+}
+
+.pages {
+  position: absolute;
+  bottom: 0px;
+  padding: 10px;
+  left: 600px;
+}
+
+.no-job-container {
+  position: absolute;
+  width: 250px;
+  height: 163px;
+  top: 343px;
+  left: 583px;
+}
+
+.no-job-header {
+  text-align: center;
+  color: var(--unnamed-color-303f60);
+  font-size: 18px;
+  /* padding: 6px; */
+  margin: 6px;
+}
+
+.post {
+  display: block;
+  margin: auto;
+  background: var(--unnamed-color-43afff) 0% 0% no-repeat padding-box;
+  border: 1px solid var(--unnamed-color-43afff);
+  border-radius: 5px;
+  width: 110px;
+  height: 40px;
+  opacity: 1;
+}

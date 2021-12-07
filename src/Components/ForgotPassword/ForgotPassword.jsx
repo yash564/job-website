@@ -1,9 +1,24 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import BASE_URL from "../../Utils/api";
+import { Link, useNavigate } from "react-router-dom";
 import "./ForgotPassword.css";
+let verifyToken;
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
+  let navigate = useNavigate();
+
+  const handleForgot=async()=>{  
+    try{
+      let res=await axios.get(`${BASE_URL}/auth/resetpassword?email=mg@gmail.com"`);
+      console.log(res.data.token);
+      verifyToken=res.data.token;
+      navigate("/resetpassword", { replace: true });
+    }catch(err){
+      console.log(err.response);
+    }
+  }
 
   return (
     <div
@@ -44,11 +59,13 @@ const ForgotPassword = () => {
               }}
             />
           </div>
-          <button className="forgot-password-button">Submit</button>
+          {/* <Link to</div>="/resetpassword" style={{ textDecoration: "none" }}> */}
+            <button className="forgot-password-button" onClick={handleForgot}>Submit</button>
+          {/* </Link> */}
         </div>
       </div>
     </div>
   );
 };
 
-export default ForgotPassword;
+export {ForgotPassword,verifyToken};

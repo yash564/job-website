@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import BASE_URL from "../../Utils/api";
+import { Link, useNavigate } from "react-router-dom";
 import "./SignUpPage.css";
 
 const SignUpPage = () => {
@@ -8,6 +10,24 @@ const SignUpPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [skills, setSkills] = useState("");
+  let navigate=useNavigate();
+
+  const handleSignUp = async () => {
+    try {
+      let res = await axios.post(`${BASE_URL}/auth/register`, {
+        name: name,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+        userRole: 0,
+        skills: skills,
+      });
+      console.log(res.statusText);
+      navigate("/jobportal", { replace: true });
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  };
 
   return (
     <div
@@ -111,7 +131,9 @@ const SignUpPage = () => {
               placeholder="Enter comma separated skills"
             />
           </div>
-          <button className="signup-button">Signup</button>
+          <button className="signup-button" onClick={handleSignUp}>
+            Signup
+          </button>
           <div className="register-suggestion">
             <div>Have an account?&nbsp;</div>
             <Link to="/auth/login" style={{ textDecoration: "none" }}>
