@@ -10,6 +10,7 @@ const CreateJobPortal = () => {
   const [jobTitle, setJobTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
+  let navigate=useNavigate();
 
   const handleModal = () => {
     setModal(!modal);
@@ -29,6 +30,7 @@ const CreateJobPortal = () => {
         }
       );
       console.log(res);
+      navigate("/jobportal",{replace: true});
     } catch (err) {
       console.log(err.response);
     }
