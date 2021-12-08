@@ -40,7 +40,9 @@ const HomePage = () => {
           <div className="container-heading-bottom-2">Jobs</div>
         </div>
         <div className="image-container"></div>
-        <button className="container-button">Get Started</button>
+        <Link to="/auth/login">
+          <button className="container-button">Get Started</button>
+        </Link>
       </div>
       <div className="lower-home-page">
         <div className="card-container">

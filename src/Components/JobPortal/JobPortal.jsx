@@ -3,7 +3,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./JobPortal.css";
 import BASE_URL from "../../Utils/api";
 import { userToken } from "../LoginPage/LoginPage";
@@ -15,6 +15,7 @@ const JobPortal = () => {
   const [modal, setModal] = useState(false);
   const [allPostedJobs, setAllPostedJobs] = useState([]);
   const [page, setPage] = useState(1);
+  let navigate=useNavigate();
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -23,6 +24,10 @@ const JobPortal = () => {
   const handleModal = () => {
     setModal(!modal);
   };
+
+  const handleLogOut = () =>{
+    navigate("/", { replace: true });
+  }
 
   useEffect(async () => {
     try {
@@ -92,7 +97,7 @@ const JobPortal = () => {
           ></i>
           <div className="home">Home</div>
         </Link>
-        {modal && <div className="box arrow-top">Logout</div>}
+        {modal && <div className="box arrow-top" onClick={handleLogOut}>Logout</div>}
         <div className="home-bottom">Jobs posted by you</div>
         {allPostedJobs.length > 0 ? (
           <>

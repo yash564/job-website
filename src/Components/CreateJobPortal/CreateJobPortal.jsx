@@ -16,6 +16,10 @@ const CreateJobPortal = () => {
     setModal(!modal);
   };
 
+  const handleLogOut = () =>{
+    navigate("/", { replace: true });
+  }
+
   const handleJobPost = async () => {
     try {
       let res = await axios.post(
@@ -74,7 +78,7 @@ const CreateJobPortal = () => {
           ></i>
           <div className="home">Home &gt; Post a Job</div>
         </Link>
-        {modal && <div className="box arrow-top">Logout</div>}
+        {modal && <div className="box arrow-top" onClick={handleLogOut}>Logout</div>}
       </div>
       <div className="create-job-page-container">
         <div className="register-page-header">Post a Job</div>
