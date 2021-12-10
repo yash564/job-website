@@ -7,18 +7,26 @@ let verifyToken;
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
+  const [empty, setEmpty] = useState(false);
   let navigate = useNavigate();
 
-  const handleForgot=async()=>{  
-    try{
-      let res=await axios.get(`${BASE_URL}/auth/resetpassword?email=mg@gmail.com"`);
-      console.log(res.data.token);
-      verifyToken=res.data.token;
-      navigate("/resetpassword", { replace: true });
-    }catch(err){
-      console.log(err.response);
+  const handleForgot = async () => {
+    if(email===""){
+      setEmpty(true);
+    }else{
+      setEmpty(false);
+      try {
+        let res = await axios.get(
+          `${BASE_URL}/auth/resetpassword?email=mg@gmail.com`
+        );
+        console.log(res.data.data.token);
+        verifyToken = res.data.data.token;
+        navigate("/resetpassword", { replace: true });
+      } catch (err) {
+        console.log(err.response);
+      }
     }
-  }
+  };
 
   return (
     <div
@@ -59,8 +67,15 @@ const ForgotPassword = () => {
               }}
             />
           </div>
+          {empty ? (
+            <div className="empty-forgot-error">All Fields are mandatory</div>
+          ) : (
+            <div className="not-empty">All Fields are mandatory</div>
+          )}
           {/* <Link to</div>="/resetpassword" style={{ textDecoration: "none" }}> */}
-            <button className="forgot-password-button" onClick={handleForgot}>Submit</button>
+          <button className="forgot-password-button" onClick={handleForgot}>
+            Submit
+          </button>
           {/* </Link> */}
         </div>
       </div>
@@ -68,4 +83,4 @@ const ForgotPassword = () => {
   );
 };
 
-export {ForgotPassword,verifyToken};
+export { ForgotPassword, verifyToken };

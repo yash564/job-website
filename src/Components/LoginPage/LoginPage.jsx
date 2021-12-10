@@ -5,11 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 let userToken;
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [empty, setEmpty] = useState(false);
+  const [errMessage, setErrorMessage] = useState(null);
   let navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -18,7 +19,7 @@ const LoginPage = (props) => {
         email,
         password,
       });
-      userToken=res.data.data.token;
+      userToken = res.data.data.token;
       console.log(res.data.data.token);
       if (res.status === 200) {
         console.log("email and pass is correct");
@@ -26,10 +27,19 @@ const LoginPage = (props) => {
       }
     } catch (err) {
       console.log(err.response);
-      if (email === "" || password === "") {
-        setError(false);
-        setEmpty(true);
-      } else {
+      if (err.response.status === 422) {
+        if (error) {
+          setError(false);
+        } else {
+          if (email === "" || password === "") {
+            setErrorMessage(null);
+            setEmpty(true);
+          } else {
+            setEmpty(false);
+            setErrorMessage(err.response.data.errors[0].email);
+          }
+        }
+      } else if (err.response.status === 401) {
         setEmpty(false);
         setError(true);
       }
@@ -63,7 +73,7 @@ const LoginPage = (props) => {
         <div className="login-page-header">Login</div>
         <div className="login-email-container">
           <div className="heading">Email address</div>
-          {error ? (
+          {error || errMessage || empty ? (
             <input
               type="email"
               value={email}
@@ -91,7 +101,7 @@ const LoginPage = (props) => {
               <div className="forgot">Forgot your password?</div>
             </Link>
           </div>
-          {error ? (
+          {error || errMessage || empty ? (
             <input
               type="password"
               value={password}
@@ -120,7 +130,13 @@ const LoginPage = (props) => {
         {error ? (
           <div className="incorrect">Incorrect email address or password</div>
         ) : (
-          <div className="correct">Incorrect email address or password</div>
+          <>
+            {errMessage ? (
+              <div className="incorrect-message">{errMessage}</div>
+            ) : (
+              <div className="correct">Incorrect email address or password</div>
+            )}
+          </>
         )}
         <button className="login-button" onClick={handleLogin}>
           Login
@@ -138,5 +154,4 @@ const LoginPage = (props) => {
   );
 };
 
-export {LoginPage,userToken};
-
+export { LoginPage, userToken };

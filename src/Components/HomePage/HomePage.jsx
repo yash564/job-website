@@ -80,31 +80,31 @@ const HomePage = () => {
           <div className="about-header">Companies Who Trust Us</div>
           <div className="about-logos">
             <div className="logo-1">
-              <img src={Logo1} />
+              <img src={Logo1} alt=""/>
             </div>
             <div className="logo-2">
-              <img src={Logo2} />
+              <img src={Logo2} alt=""/>
             </div>
             <div className="logo-3">
-              <img src={Logo3} />
+              <img src={Logo3} alt=""/>
             </div>
             <div className="logo-4">
-              <img src={Logo4} />
+              <img src={Logo4} alt=""/>
             </div>
             <div className="logo-5">
-              <img src={Logo5} />
+              <img src={Logo5} alt=""/>
             </div>
             <div className="logo-6">
-              <img src={Logo6} />
+              <img src={Logo6} alt=""/>
             </div>
             <div className="logo-7">
-              <img src={Logo7} />
+              <img src={Logo7} alt=""/>
             </div>
             <div className="logo-8">
-              <img src={Logo8} />
+              <img src={Logo8} alt=""/>
             </div>
             <div className="logo-6">
-              <img src={Logo6} />
+              <img src={Logo6} alt=""/>
             </div>
           </div>
         </div>

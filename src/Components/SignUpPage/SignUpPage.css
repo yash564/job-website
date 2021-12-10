@@ -102,3 +102,35 @@ input[type="text"]:focus {
   font-size: 14px;
   color: var(--unnamed-color-303f60);
 }
+
+.email-incorrect {
+  position: absolute;
+  top: 231px;
+  left: 390px;
+  color: #ff0000;
+  font-size: 14px;
+}
+
+.password-incorrect {
+  position: absolute;
+  top: 427px;
+  left: 226px;
+  color: #ff0000;
+  font-size: 14px;
+}
+
+.confirm-password-incorrect {
+  position: absolute;
+  top: 427px;
+  left: 198px;
+  color: #ff0000;
+  font-size: 14px;
+}
+
+.empty-error {
+  position: absolute;
+  top: 422px;
+  left: 332px;
+  color: #ff0000;
+  font-size: 14px;
+}

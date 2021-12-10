@@ -126,7 +126,7 @@ input[type="password"]:focus {
   display: none;
 }
 
-.empty{
+.empty {
   position: absolute;
   top: 197px;
   left: 368px;
@@ -134,7 +134,7 @@ input[type="password"]:focus {
   font-size: 14px;
 }
 
-.not-empty{
+.not-empty {
   position: absolute;
   top: 197px;
   left: 368px;
@@ -142,3 +142,12 @@ input[type="password"]:focus {
   font-size: 14px;
   display: none;
 }
+
+.incorrect-message {
+  position: absolute;
+  top: 197px;
+  left: 426px;
+  color: #ff0000;
+  font-size: 14px;
+}
+

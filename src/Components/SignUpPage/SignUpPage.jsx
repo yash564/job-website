@@ -10,7 +10,12 @@ const SignUpPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [skills, setSkills] = useState("");
-  let navigate=useNavigate();
+  const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(null);
+  const [emptyError, setEmptyError] = useState(false);
+  // const [errors, setErrors] = useState([]);
+  let navigate = useNavigate();
 
   const handleSignUp = async () => {
     try {
@@ -23,9 +28,30 @@ const SignUpPage = () => {
         skills: skills,
       });
       console.log(res.statusText);
-      navigate("/jobportal", { replace: true });
+      navigate("/auth/login", { replace: true });
     } catch (err) {
       console.log(err.response.data);
+      if (err.response.data.errors) {
+        // setErrors(err.response.data.errors);
+        let arr = err.response.data.errors;
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i].hasOwnProperty("password")) {
+            setEmptyError(false);
+            setConfirmPasswordError(null);
+            setPasswordError(arr[i].password);
+          } else if (arr[i].hasOwnProperty("confirmPassword")) {
+            setEmptyError(false);
+            setPasswordError(null);
+            setConfirmPasswordError(arr[i].confirmPassword);
+          } else if (arr[i].hasOwnProperty("email")) {
+            setEmailError(arr[i].email);
+          } else {
+            setConfirmPasswordError(null);
+            setPasswordError(null);
+            setEmptyError(true);
+          }
+        }
+      }
     }
   };
 
@@ -131,6 +157,14 @@ const SignUpPage = () => {
               placeholder="Enter comma separated skills"
             />
           </div>
+          {emailError && <div className="email-incorrect">{emailError}</div>}
+          {passwordError && <div className="password-incorrect">{passwordError}</div>}
+          {confirmPasswordError && (
+            <div className="confirm-password-incorrect">{confirmPasswordError}</div>
+          )}
+          {emptyError && (
+            <div className="empty-error">All fields are mandatory</div>
+          )}
           <button className="signup-button" onClick={handleSignUp}>
             Signup
           </button>

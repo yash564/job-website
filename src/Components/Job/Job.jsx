@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { v4 as uuidv4 } from "uuid";
-import { Typography, Divider } from "@mui/material";
+import { Divider } from "@mui/material";
 import axios from "axios";
 import BASE_URL from "../../Utils/api";
 import { userToken } from "../LoginPage/LoginPage";
